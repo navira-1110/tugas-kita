@@ -1,138 +1,264 @@
-/* ===== TUGAS KITA: tema biru =====
-   Cara pakai: tempel SELURUH isi file ini di PALING BAWAH style.css
-   (jangan hapus isi lama), lalu Commit changes. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap");
 
 :root {
   --biru: #1d4ed8;
   --biru-tua: #14308f;
   --biru-muda: #eaf0ff;
+  --garis: #c7d6ff;
   --tinta: #0f1b3d;
   --abu: #5b6785;
   --latar: #f1f5ff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--tinta);
   background:
     radial-gradient(900px 380px at 50% -140px, #dbe6ff 0%, transparent 70%),
     var(--latar);
-  color: var(--tinta);
 }
 
-/* Judul */
-body h1 {
-  color: var(--biru);
+main {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
+  color: var(--biru);
 }
 
-/* Teks "1 tugas belum selesai" */
-body h1 + p {
+h1 + p {
+  margin: 0 0 20px;
   color: var(--abu);
 }
 
-/* Kartu form */
-body form {
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ===== Form ===== */
+form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(29, 78, 216, 0.1);
 }
 
-/* Kolom isian */
-body input:not([type="checkbox"]):not([type="file"]),
-body select,
-body textarea {
+form input,
+form select,
+form textarea {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  color: var(--tinta);
   background: var(--biru-muda);
   border: 1.5px solid transparent;
   border-radius: 12px;
-  color: var(--tinta);
+  padding: 12px 14px;
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
 }
 
-body input:not([type="checkbox"]):not([type="file"]):focus,
-body select:focus,
-body textarea:focus {
+form input::placeholder {
+  color: #7d8aa8;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
   background: #fff;
   border-color: var(--biru);
   box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
-  outline: none;
 }
 
-/* Tombol Tambah tugas */
-body form button {
-  background: var(--biru);
-  border-radius: 12px;
-  color: #fff;
+form input[placeholder*="Nama"],
+form input[placeholder*="Catatan"],
+form textarea,
+form button {
+  grid-column: 1 / -1;
+}
+
+form button {
+  padding: 13px;
   font-weight: 700;
+  color: #fff;
+  background: var(--biru);
+  border: 0;
+  border-radius: 12px;
   box-shadow: 0 6px 16px rgba(29, 78, 216, 0.3);
   transition: background 0.15s, transform 0.1s;
 }
 
-body form button:hover {
+form button:hover {
   background: var(--biru-tua);
 }
 
-body form button:active {
+form button:active {
   transform: translateY(1px);
 }
 
-/* Tab Belum selesai / Selesai */
-body .tab {
+/* ===== Tab dan filter ===== */
+.kontrol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.tab {
+  display: inline-flex;
+  padding: 4px;
   background: #fff;
   border-radius: 999px;
-  padding: 4px;
   box-shadow: 0 2px 10px rgba(29, 78, 216, 0.08);
 }
 
-body .tab button[role="tab"] {
-  border-radius: 999px;
+.tab button {
+  padding: 8px 16px;
+  font-weight: 500;
   color: var(--abu);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
   transition: background 0.15s, color 0.15s;
 }
 
-body .tab button[role="tab"].aktif,
-body .tab button[role="tab"][aria-selected="true"] {
-  background: var(--biru);
+.tab button.aktif,
+.tab button[aria-selected="true"] {
   color: #fff;
+  background: var(--biru);
 }
 
-/* Daftar tugas */
-body #daftar li {
+#filter {
+  max-width: 100%;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--tinta);
+  background: var(--biru-muda);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+}
+
+#filter:focus {
+  outline: none;
+  border-color: var(--biru);
+}
+
+/* ===== Daftar tugas ===== */
+#daftar {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#daftar li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
   background: #fff;
+  border-left: 4px solid var(--biru);
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(29, 78, 216, 0.08);
-  transition: box-shadow 0.15s;
+  overflow-wrap: anywhere;
 }
 
-body #daftar li:hover {
-  box-shadow: 0 10px 26px rgba(29, 78, 216, 0.16);
-}
-
-body #daftar input[type="checkbox"] {
+#daftar li > input[type="checkbox"] {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
   accent-color: var(--biru);
 }
 
-/* Tombol kecil di bawah (cadangan) */
-body button.kecil {
-  background: transparent;
-  border: 1.5px solid #c7d6ff;
-  border-radius: 999px;
-  color: var(--biru);
-  font-weight: 600;
+#daftar li > :nth-child(2) {
+  flex: 1;
+  min-width: 0;
 }
 
-body button.kecil:hover {
+#daftar li > :last-child:not(:nth-child(2)) {
+  flex: none;
+  margin-left: auto;
+  text-align: right;
+}
+
+#daftar li button {
+  padding: 4px 0;
+  font-size: 13px;
+  color: #7d8aa8;
+  background: none;
+  border: 0;
+}
+
+#daftar li button:hover {
+  color: #d92d20;
+}
+
+/* ===== Footer ===== */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+button.kecil {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--biru);
+  background: transparent;
+  border: 1.5px solid var(--garis);
+  border-radius: 999px;
+}
+
+button.kecil:hover {
   background: var(--biru-muda);
 }
 
-body footer p {
+footer p {
+  width: 100%;
+  margin: 8px 0 0;
+  font-size: 12px;
+  text-align: center;
   color: var(--abu);
 }
 
-/* Fokus keyboard yang jelas */
-body button:focus-visible,
-body select:focus-visible {
+button:focus-visible,
+select:focus-visible {
   outline: 3px solid rgba(29, 78, 216, 0.45);
   outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  form {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
