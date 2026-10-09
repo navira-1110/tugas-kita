@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tugas Kita</title>
+  <meta name="theme-color" content="#2f3fd0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Tugas Kita</h1>
+      <p id="ringkasan">Memuat…</p>
+    </header>
+
+    <form id="form-tugas" autocomplete="off">
+      <input id="nama" type="text" placeholder="Nama tugas" required maxlength="80">
+      <div class="baris">
+        <input id="matkul" type="text" placeholder="Mata kuliah" required maxlength="40" list="daftar-matkul">
+        <datalist id="daftar-matkul"></datalist>
+        <input id="deadline" type="datetime-local" required aria-label="Deadline">
+      </div>
+      <input id="catatan" type="text" placeholder="Catatan (opsional)" maxlength="120">
+      <button type="submit">Tambah tugas</button>
+    </form>
+
+    <div class="kontrol">
+      <div class="tab" role="tablist">
+        <button role="tab" id="tab-aktif" class="aktif" aria-selected="true">Belum selesai</button>
+        <button role="tab" id="tab-selesai" aria-selected="false">Selesai</button>
+      </div>
+      <select id="filter" aria-label="Filter mata kuliah">
+        <option value="">Semua matkul</option>
+      </select>
+    </div>
+
+    <ul id="daftar"></ul>
+
+    <footer>
+      <button id="ekspor" class="kecil">Simpan cadangan</button>
+      <button id="impor" class="kecil">Pulihkan cadangan</button>
+      <input id="berkas" type="file" accept="application/json" hidden>
+      <p>Data tersimpan di browser perangkat ini.</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
